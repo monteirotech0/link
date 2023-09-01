@@ -4,6 +4,7 @@
         "tumbnail": "",
         "data_publicacao": "01/09/2023 13:37:00",
         "title": "Meu primeiro post",
+        "resumo": "Este é outro post interessante que eu escrevi.",
         "content": "Este é o conteúdo do meu primeiro post no blog."
     },
     {
@@ -11,6 +12,7 @@
         "tumbnail": "",
         "data_publicacao": "01/09/2023 13:37:00",
         "title": "Outro post",
+        "resumo": "Este é outro post interessante que eu escrevi.",
         "content": "Este é outro post interessante que eu escrevi."
     }
 ]
