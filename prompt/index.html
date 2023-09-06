@@ -1,0 +1,55 @@
+Claro! Aqui está um exemplo simples de uma página HTML para um teleprompter em português:
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teleprompter</title>
+    <style>
+        body {
+            font-size: 24px;
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        #content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <p>
+            Coloque o seu texto aqui. Ele será exibido como um teleprompter.
+            Certifique-se de que o tamanho da fonte e a velocidade de rolagem
+            sejam adequados para a sua leitura.
+        </p>
+    </div>
+    <script>
+        const content = document.getElementById("content");
+        let scrollSpeed = 1; // Ajuste a velocidade de rolagem conforme necessário.
+
+        function scrollText() {
+            content.style.transform = `translate(-50%, ${-content.scrollHeight}px)`;
+        }
+
+        setInterval(scrollText, scrollSpeed * 1000);
+    </script>
+</body>
+</html>
+```
+
+Neste exemplo, você pode substituir o texto dentro da tag `<p>` pelo seu próprio texto. A velocidade de rolagem é definida pela variável `scrollSpeed` em segundos. Quanto menor o valor, mais rápido o texto irá rolar. Ajuste conforme necessário.
+
+Lembre-se de que esta é uma implementação simples de um teleprompter em HTML e pode não ter todas as funcionalidades avançadas que um software de teleprompter dedicado teria.
