@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestão de Registros</title>
+</head>
+<body>
+    <!-- Formulário de Login -->
+    <div id="login-form">
+        <h2>Faça login</h2>
+        <form id="login">
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" name="username" required><br><br>
+
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required><br><br>
+
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+
+    <!-- Painel de Administração -->
+    <div id="admin-panel" style="display: none;">
+        <h2>Painel de Administração</h2>
+        <button id="logout">Sair</button>
+        <hr>
+
+        <!-- Formulário para adicionar registro -->
+        <h3>Adicionar Registro</h3>
+        <form id="add-form">
+            <label for="categoria">Categoria:</label>
+            <input type="text" id="categoria" name="categoria" required><br><br>
+
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" required><br><br>
+
+            <label for="link">Link:</label>
+            <input type="text" id="link" name="link" required><br><br>
+
+            <label for="imagem">URL da Imagem:</label>
+            <input type="text" id="imagem" name="imagem" required><br><br>
+
+            <button type="submit">Adicionar</button>
+        </form>
+
+        <hr>
+
+        <!-- Lista de Registros -->
+        <h3>Registros</h3>
+        <ul id="registros">
+            <!-- Os registros serão listados aqui -->
+        </ul>
+    </div>
+
+    <script>
+        // Dados de login
+        const usuarioValido = "monteiro";
+        const senhaValida = "monteiro1";
+
+        // Verifica se o usuário está logado
+        const usuarioLogado = sessionStorage.getItem("usuarioLogado");
+
+        // Elementos do DOM
+        const loginForm = document.getElementById("login-form");
+        const adminPanel = document.getElementById("admin-panel");
+        const addForm = document.getElementById("add-form");
+        const registrosList = document.getElementById("registros");
+
+        // Função para exibir registros
+        function exibirRegistros() {
+            registrosList.innerHTML = "";
+
+            // Carrega registros do JSON
+            const registros = JSON.parse(localStorage.getItem("registros")) || [];
+
+            registros.forEach(registro => {
+                const li = document.createElement("li");
+                li.innerHTML = `
+                    <b>Categoria:</b> ${registro.categoria}<br>
+                    <b>Descrição:</b> ${registro.descricao}<br>
+                    <b>Link:</b> <a href="${registro.link}" target="_blank">${registro.link}</a><br>
+                    <b>Imagem:</b> <img src="${registro.imagem}" alt="${registro.descricao}"><br>
+                    <button class="editar" data-id="${registro.id}">Editar</button>
+                    <button class="excluir" data-id="${registro.id}">Excluir</button>
+                `;
+                registrosList.appendChild(li);
+            });
+        }
+
+        // Função para realizar login
+        function realizarLogin(event) {
+            event.preventDefault();
+            const usernameInput = document.getElementById("username");
+            const passwordInput = document.getElementById("password");
+
+            if (usernameInput.value === usuarioValido && passwordInput.value === senhaValida) {
+                sessionStorage.setItem("usuarioLogado", true);
+                exibirRegistros();
+                loginForm.style.display = "none";
+                adminPanel.style.display = "block";
+            } else {
+                alert("Credenciais de login inválidas.");
+            }
+        }
+
+        // Função para adicionar registro
+        function adicionarRegistro(event) {
+            event.preventDefault();
+            const categoriaInput = document.getElementById("categoria");
+            const descricaoInput = document.getElementById("descricao");
+            const linkInput = document.getElementById("link");
+            const imagemInput = document.getElementById("imagem");
+
+            const registros = JSON.parse(localStorage.getItem("registros")) || [];
+            const novoRegistro = {
+                id: registros.length + 1,
+                categoria: categoriaInput.value,
+                descricao: descricaoInput.value,
+                link: linkInput.value,
+                imagem: imagemInput.value
+            };
+            registros.push(novoRegistro);
+            localStorage.setItem("registros", JSON.stringify(registros));
+            exibirRegistros();
+
+            categoriaInput.value = "";
+            descricaoInput.value = "";
+            linkInput.value = "";
+            imagemInput.value = "";
+        }
+
+        // Função para editar registro
+        function editar
+
+Registro(event) {
+            const id = event.target.getAttribute("data-id");
+            const registros = JSON.parse(localStorage.getItem("registros")) || [];
+            const registroParaEditar = registros.find(registro => registro.id === parseInt(id));
+
+            if (registroParaEditar) {
+                const categoriaInput = prompt("Editar Categoria:", registroParaEditar.categoria);
+                const descricaoInput = prompt("Editar Descrição:", registroParaEditar.descricao);
+                const linkInput = prompt("Editar Link:", registroParaEditar.link);
+                const imagemInput = prompt("Editar URL da Imagem:", registroParaEditar.imagem);
+
+                if (categoriaInput !== null && descricaoInput !== null && linkInput !== null && imagemInput !== null) {
+                    registroParaEditar.categoria = categoriaInput;
+                    registroParaEditar.descricao = descricaoInput;
+                    registroParaEditar.link = linkInput;
+                    registroParaEditar.imagem = imagemInput;
+
+                    localStorage.setItem("registros", JSON.stringify(registros));
+                    exibirRegistros();
+                }
+            }
+        }
+
+        // Função para excluir registro
+        function excluirRegistro(event) {
+            const id = event.target.getAttribute("data-id");
+            const registros = JSON.parse(localStorage.getItem("registros")) || [];
+            const registrosFiltrados = registros.filter(registro => registro.id !== parseInt(id));
+            localStorage.setItem("registros", JSON.stringify(registrosFiltrados));
+            exibirRegistros();
+        }
+
+        // Função para fazer logout
+        function fazerLogout() {
+            sessionStorage.removeItem("usuarioLogado");
+            loginForm.style.display = "block";
+            adminPanel.style.display = "none";
+        }
+
+        // Event Listeners
+        const login = document.getElementById("login");
+        login.addEventListener("submit", realizarLogin);
+
+        if (usuarioLogado) {
+            exibirRegistros();
+            loginForm.style.display = "none";
+            adminPanel.style.display = "block";
+        }
+
+        const logoutButton = document.getElementById("logout");
+        logoutButton.addEventListener("click", fazerLogout);
+
+        addForm.addEventListener("submit", adicionarRegistro);
+
+        registrosList.addEventListener("click", function (event) {
+            if (event.target.classList.contains("editar")) {
+                editarRegistro(event);
+            } else if (event.target.classList.contains("excluir")) {
+                excluirRegistro(event);
+            }
+        });
+    </script>
+</body>
+</html>
