@@ -49,13 +49,21 @@
         // Obtém o valor do parâmetro 'destino' da URL
         const destino = obterParametroURL('destino');
 
-        // Redireciona para o destino especificado
-        if (destino) {
-            window.location.href = destino;
-        } else {
-            // Redireciona para um site padrão se nenhum parâmetro for especificado
-            window.location.href = 'https://www.monteirotech.com.br';
+        // Define o tempo de atraso em milissegundos (por exemplo, 5000ms = 5 segundos)
+        const atrasoEmMilissegundos = 5000;
+
+        // Função para redirecionar após o atraso
+        function redirecionar() {
+            if (destino) {
+                window.location.href = destino;
+            } else {
+                // Redireciona para um site padrão se nenhum parâmetro for especificado
+                window.location.href = 'https://www.monteirotech.com.br';
+            }
         }
+
+        // Define o atraso usando setTimeout
+        setTimeout(redirecionar, atrasoEmMilissegundos);
     </script>
 </body>
 </html>
