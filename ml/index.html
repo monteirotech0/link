@@ -53,6 +53,14 @@
         const atrasoEmMilissegundos = 5000;
 
         // Função para redirecionar após o atraso
+
+        
+        if(destino === '1'){
+            destino = 'https://mercadolivre.com.br/sec/2jrxGR1'
+        }else if (destino === '2'){
+            destino = 'https://mercadolivre.com.br/sec/1isbS28'
+        }
+
         function redirecionar() {
             if (destino) {
                 window.location.href = destino;
