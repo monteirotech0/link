@@ -1,18 +1,21 @@
 [
     {
         "id": 1,
+        "categoria": "meli",
         "descricao": "Produto 2",
         "link": "https://mercadolivre.com.br/sec/2jrxGR1",
         "imagem": "imagem1.jpg"
     },
     {
         "id": 2,
+        "categoria": "meli",
         "descricao": "Produto 2",
         "link": "https://mercadolivre.com.br/sec/1isbS28",
         "imagem": "imagem2.jpg"
     },
     {
         "id": 3,
+        "categoria": "meli",
         "descricao": "Produto 3",
         "link": "https://mercadolivre.com.br/sec/2ywPtQt",
         "imagem": "https://http2.mlstatic.com/D_NQ_NP_2X_711521-MLB53019198209_122022-F.webp"
