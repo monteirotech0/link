@@ -196,8 +196,9 @@
         function redirecionar() {
 
             if (!destino) {
+                document.title = 'MonteiroTech'
                 // Redireciona para um site padrão se nenhum destino for especificado
-                window.location.href = 'https://www.monteirotech.com.br';
+                //window.location.href = 'https://www.monteirotech.com.br';
                 return;
             }
 
@@ -214,8 +215,9 @@
                             // Redireciona para o link do produto encontrado
                             window.location.href = produto.link;
                         } else {
+                            document.title = 'MonteiroTech'
                             // Redireciona para um site padrão se o produto não for encontrado
-                            window.location.href = 'https://www.monteirotech.com';
+                            //window.location.href = 'https://www.monteirotech.com';
                         }
                     })
                     .catch(error => {
