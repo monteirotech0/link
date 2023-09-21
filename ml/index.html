@@ -56,7 +56,7 @@
 
         // Função para redirecionar após o atraso
 
-        console.log(destino)
+       /* console.log(destino)
         let novoTitulo = 'Redirecionando...'; // Título padrão
         if (destino === '1') {
             destino = 'https://mercadolivre.com.br/sec/2jrxGR1'
@@ -76,10 +76,75 @@
                 // Redireciona para um site padrão se nenhum parâmetro for especificado
                 window.location.href = 'https://www.monteirotech.com.br';
             }
-        }
+        }*/
         
+        function redirecionar() {
+
+            if (!destino) {
+                // Redireciona para um site padrão se nenhum destino for especificado
+                window.location.href = 'https://www.monteirotech.com.br';
+                return;
+            }
+
+           
+                // Carrega o arquivo JSON com os produtos
+            fetch('produtos.json') // Carrega o arquivo JSON
+                .then(response => response.json()) // Converte a resposta para JSON
+                .then(data => {
+                        // Encontra o produto com base no ID passado pelo destino
+                        const produto = data.find(item => item.id.toString() === destino);
+                        document.title = produto.descricao;
+                        
+                        if (produto && produto.link) {
+                            // Redireciona para o link do produto encontrado
+                            window.location.href = produto.link;
+                        } else {
+                            // Redireciona para um site padrão se o produto não for encontrado
+                            window.location.href = 'https://www.monteirotech.com';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro ao carregar os produtos:', error);
+                    });
+        }        
         // Define o atraso usando setTimeout
         setTimeout(redirecionar, atrasoEmMilissegundos);
+
+
+    </script>
+
+
+    <ul id="lista-produtos">
+        <!-- Os produtos serão adicionados aqui -->
+    </ul>
+
+    <script>
+        // Função para carregar e exibir a lista de produtos a partir do arquivo JSON
+        function carregarProdutos() {
+            fetch('produtos.json') // Carrega o arquivo JSON
+                .then(response => response.json()) // Converte a resposta para JSON
+                .then(data => {
+                    const listaProdutos = document.getElementById('lista-produtos');
+
+                    // Itera sobre os produtos e os exibe na página
+                    data.forEach(produto => {
+                        const listItem = document.createElement('li');
+                        listItem.innerHTML = `
+                            <h2>${produto.descricao}</h2>
+                            <p>ID: ${produto.id}</p>
+                            <a href="${produto.link}" target="_blank">Link</a>
+                            <img src="${produto.imagem}" alt="${produto.descricao}">
+                        `;
+                        listaProdutos.appendChild(listItem);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar os produtos:', error);
+                });
+        }
+
+        // Chama a função para carregar os produtos quando a página carregar
+        window.addEventListener('load', carregarProdutos);
     </script>
 </body>
 </html>

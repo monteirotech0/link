@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "descricao": "Produto 2",
+        "link": "https://mercadolivre.com.br/sec/2jrxGR1",
+        "imagem": "imagem1.jpg"
+    },
+    {
+        "id": 2,
+        "descricao": "Produto 2",
+        "link": "https://mercadolivre.com.br/sec/1isbS28",
+        "imagem": "imagem2.jpg"
+    },
+    {
+        "id": 3,
+        "descricao": "Produto 3",
+        "link": "https://mercadolivre.com.br/sec/2ywPtQt",
+        "imagem": "imagem3.jpg"
+    }
+]
