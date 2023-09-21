@@ -130,9 +130,7 @@
         }
 
         // Função para editar registro
-        function editar
-
-Registro(event) {
+        function editarRegistro(event) {
             const id = event.target.getAttribute("data-id");
             const registros = JSON.parse(localStorage.getItem("registros")) || [];
             const registroParaEditar = registros.find(registro => registro.id === parseInt(id));
