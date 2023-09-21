@@ -70,21 +70,26 @@
         function exibirRegistros() {
             registrosList.innerHTML = "";
 
-            // Carrega registros do JSON
-            const registros = JSON.parse(localStorage.getItem("registros")) || [];
-
-            registros.forEach(registro => {
-                const li = document.createElement("li");
-                li.innerHTML = `
-                    <b>Categoria:</b> ${registro.categoria}<br>
-                    <b>Descrição:</b> ${registro.descricao}<br>
-                    <b>Link:</b> <a href="${registro.link}" target="_blank">${registro.link}</a><br>
-                    <b>Imagem:</b> <img src="${registro.imagem}" alt="${registro.descricao}"><br>
-                    <button class="editar" data-id="${registro.id}">Editar</button>
-                    <button class="excluir" data-id="${registro.id}">Excluir</button>
-                `;
-                registrosList.appendChild(li);
-            });
+            // Carrega registros do arquivo JSON
+            fetch('produtos.json')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(registro => {
+                        const li = document.createElement("li");
+                        li.innerHTML = `
+                            <b>Categoria:</b> ${registro.categoria}<br>
+                            <b>Descrição:</b> ${registro.descricao}<br>
+                            <b>Link:</b> <a href="${registro.link}" target="_blank">${registro.link}</a><br>
+                            <b>Imagem:</b> <img src="${registro.imagem}" alt="${registro.descricao}"><br>
+                            <button class="editar" data-id="${registro.id}">Editar</button>
+                            <button class="excluir" data-id="${registro.id}">Excluir</button>
+                        `;
+                        registrosList.appendChild(li);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar os produtos:', error);
+                });
         }
 
         // Função para realizar login
@@ -111,55 +116,121 @@
             const linkInput = document.getElementById("link");
             const imagemInput = document.getElementById("imagem");
 
-            const registros = JSON.parse(localStorage.getItem("registros")) || [];
-            const novoRegistro = {
-                id: registros.length + 1,
-                categoria: categoriaInput.value,
-                descricao: descricaoInput.value,
-                link: linkInput.value,
-                imagem: imagemInput.value
-            };
-            registros.push(novoRegistro);
-            localStorage.setItem("registros", JSON.stringify(registros));
-            exibirRegistros();
+            // Carrega registros do arquivo JSON
+            fetch('produtos.json')
+                .then(response => response.json())
+                .then(data => {
+                    const registros = data || [];
+                    const novoRegistro = {
+                        id: registros.length + 1,
+                        categoria: categoriaInput.value,
+                        descricao: descricaoInput.value,
+                        link: linkInput.value,
+                        imagem: imagemInput.value
+                    };
+                    registros.push(novoRegistro);
 
-            categoriaInput.value = "";
-            descricaoInput.value = "";
-            linkInput.value = "";
-            imagemInput.value = "";
+                    // Atualiza o arquivo JSON com o novo registro
+                    fetch('produtos.json', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(registros),
+                    })
+                    .then(response => response.json())
+                    .then(() => {
+                        exibirRegistros();
+
+                        categoriaInput.value = "";
+                        descricaoInput.value = "";
+                        linkInput.value = "";
+                        imagemInput.value = "";
+                    })
+                    .catch(error => {
+                        console.error('Erro ao adicionar o registro:', error);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar os produtos:', error);
+                });
         }
 
         // Função para editar registro
         function editarRegistro(event) {
             const id = event.target.getAttribute("data-id");
-            const registros = JSON.parse(localStorage.getItem("registros")) || [];
-            const registroParaEditar = registros.find(registro => registro.id === parseInt(id));
+            const categoriaInput = prompt("Editar Categoria:");
+            const descricaoInput = prompt("Editar Descrição:");
+            const linkInput = prompt("Editar Link:");
+            const imagemInput = prompt("Editar URL da Imagem:");
 
-            if (registroParaEditar) {
-                const categoriaInput = prompt("Editar Categoria:", registroParaEditar.categoria);
-                const descricaoInput = prompt("Editar Descrição:", registroParaEditar.descricao);
-                const linkInput = prompt("Editar Link:", registroParaEditar.link);
-                const imagemInput = prompt("Editar URL da Imagem:", registroParaEditar.imagem);
+            if (categoriaInput !== null && descricaoInput !== null && linkInput !== null && imagemInput !== null) {
+                // Carrega registros do arquivo JSON
+                fetch('produtos.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        const registros = data || [];
+                        const registroParaEditar = registros.find(registro => registro.id === parseInt(id));
 
-                if (categoriaInput !== null && descricaoInput !== null && linkInput !== null && imagemInput !== null) {
-                    registroParaEditar.categoria = categoriaInput;
-                    registroParaEditar.descricao = descricaoInput;
-                    registroParaEditar.link = linkInput;
-                    registroParaEditar.imagem = imagemInput;
+                        if (registroParaEditar) {
+                            registroParaEditar.categoria = categoriaInput;
+                            registroParaEditar.descricao = descricaoInput;
+                            registroParaEditar.link = linkInput;
+                            registroParaEditar.imagem = imagemInput;
 
-                    localStorage.setItem("registros", JSON.stringify(registros));
-                    exibirRegistros();
-                }
+                            // Atualiza o arquivo JSON com o registro editado
+                            fetch('produtos.json', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(registros),
+                            })
+                            .then(response => response.json())
+                            .then(() => {
+                                exibirRegistros();
+                            })
+                            .catch(error => {
+                                console.error('Erro ao editar o registro:', error);
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro ao carregar os produtos:', error);
+                    });
             }
         }
 
         // Função para excluir registro
         function excluirRegistro(event) {
             const id = event.target.getAttribute("data-id");
-            const registros = JSON.parse(localStorage.getItem("registros")) || [];
-            const registrosFiltrados = registros.filter(registro => registro.id !== parseInt(id));
-            localStorage.setItem("registros", JSON.stringify(registrosFiltrados));
-            exibirRegistros();
+
+            // Carrega registros do arquivo JSON
+            fetch('produtos.json')
+                .then(response => response.json())
+                .then(data => {
+                    const registros = data || [];
+                    const registrosFiltrados = registros.filter(registro => registro.id !== parseInt(id));
+
+                    // Atualiza o arquivo JSON sem o registro excluído
+                    fetch('produtos.json', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(registrosFiltrados),
+                    })
+                    .then(response => response.json())
+                    .then(() => {
+                        exibirRegistros();
+                    })
+                    .catch(error => {
+                        console.error('Erro ao excluir o registro:', error);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar os produtos:', error);
+                });
         }
 
         // Função para fazer logout
