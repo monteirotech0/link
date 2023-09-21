@@ -27,7 +27,7 @@
             padding-bottom: 20px;
         }
     </style>
-    <title>Redirecionando...</title>
+    <title>Monteiro Tech Oferta</title>
 </head>
 <body>
 
@@ -57,6 +57,7 @@
         // Função para redirecionar após o atraso
 
         console.log(destino)
+        let novoTitulo = 'Redirecionando...'; // Título padrão
         if (destino === '1') {
             destino = 'https://mercadolivre.com.br/sec/2jrxGR1'
         }else if (destino === '2'){
@@ -64,8 +65,11 @@
         }else if (destino === '3'){
             destino = 'https://mercadolivre.com.br/sec/2ywPtQt'
         }
+        novoTitulo = `Redirecionando... ${destino}`; // Título padrão
 
         function redirecionar() {
+            
+            document.title = novoTitulo;
             if (destino) {
                 window.location.href = destino;
             } else {
@@ -73,7 +77,7 @@
                 window.location.href = 'https://www.monteirotech.com.br';
             }
         }
-
+        
         // Define o atraso usando setTimeout
         setTimeout(redirecionar, atrasoEmMilissegundos);
     </script>
