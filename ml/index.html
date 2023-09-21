@@ -125,7 +125,7 @@
             const imagemDoProduto = buscarImagemPorID(origem);
 
             // Carrega o arquivo JSON com os produtos
-            fetch('produtos.json') // Carrega o arquivo JSON
+            fetch('../produtos/produtos.json') // Carrega o arquivo JSON
                 .then(response => response.json()) // Converte a resposta para JSON
                 .then(data => {
                     // Encontra o produto com base no ID passado pelo destino
@@ -261,7 +261,7 @@
 
            
                 // Carrega o arquivo JSON com os produtos
-            fetch('produtos.json') // Carrega o arquivo JSON
+            fetch('../produtos/produtos.json') // Carrega o arquivo JSON
                 .then(response => response.json()) // Converte a resposta para JSON
                 .then(data => {
                         // Encontra o produto com base no ID passado pelo destino
@@ -298,7 +298,7 @@
     <script>
         // Função para carregar e exibir a lista de produtos a partir do arquivo JSON
         function carregarProdutos() {
-            fetch('produtos.json') // Carrega o arquivo JSON
+            fetch('../produtos/produtos.json') // Carrega o arquivo JSON
                 .then(response => response.json()) // Converte a resposta para JSON
                 .then(data => {
                     const listaProdutos = document.getElementById('lista-produtos');

@@ -236,7 +236,38 @@
     </ul>
 
     
-    
+    <ul id="lista-produtos">
+        <!-- Os produtos serão adicionados aqui -->
+    </ul>
+
+    <script>
+        // Função para carregar e exibir a lista de produtos a partir do arquivo JSON
+        function carregarProdutos() {
+            fetch('produtos/produtos.json') // Carrega o arquivo JSON
+                .then(response => response.json()) // Converte a resposta para JSON
+                .then(data => {
+                    const listaProdutos = document.getElementById('lista-produtos');
+
+                    // Itera sobre os produtos e os exibe na página
+                    data.forEach(produto => {
+                        const listItem = document.createElement('li');
+                        listItem.innerHTML = `
+                            <a href="${produto.link}" target="_blank">
+                                <h2>#${produto.id} ${produto.descricao}</h2>
+                                <img src="${produto.imagem}" />
+                            </a>
+                        `;
+                        listaProdutos.appendChild(listItem);
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar os produtos:', error);
+                });
+        }
+
+        // Chama a função para carregar os produtos quando a página carregar
+        window.addEventListener('load', carregarProdutos);
+    </script>
   
 
 </body>
