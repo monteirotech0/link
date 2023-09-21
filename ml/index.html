@@ -49,15 +49,15 @@
         }
 
         // Obtém o valor do parâmetro 'destino' da URL
-        const destino = obterParametroURL('destino');
+        let destino = obterParametroURL('destino');
 
         // Define o tempo de atraso em milissegundos (por exemplo, 5000ms = 5 segundos)
         const atrasoEmMilissegundos = 5000;
 
         // Função para redirecionar após o atraso
 
-        
-        if(destino === '1'){
+        console.log(destino)
+        if (destino === '1') {
             destino = 'https://mercadolivre.com.br/sec/2jrxGR1'
         }else if (destino === '2'){
             destino = 'https://mercadolivre.com.br/sec/1isbS28'
