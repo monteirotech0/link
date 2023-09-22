@@ -47,7 +47,7 @@ let destino = obterParametroURL('lk');
 
 function carregarProdutos() {
     console.log('Start carregarProdutos');
-    if (destinotitle) {
+    if (destino) {
         document.getElementById('title_carregamento').content = 'Estamos Carregando sua OFERTA..... ! '
     }            
 
