@@ -99,14 +99,13 @@
             padding: 0;
             display: flex;
             flex-wrap: wrap;
-            justify-content: flex-start;
+            justify-content: center; /* Centralize os cards horizontalmente */
         }
 
         ul#lista-produtos li {
-            width: calc(50% - 20px); /* Define a largura dos itens com margens para criar duas colunas */
+            width: calc(50% - 20px); /* Define a largura dos cards para criar duas colunas */
             margin: 10px;
             border: 1px solid #ddd;
-            padding: 10px;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s;
@@ -126,7 +125,12 @@
             text-overflow: ellipsis; /* Adicione reticências (...) ao texto truncado */
         }
 
-
+        /* CSS para tornar responsivo */
+        @media screen and (max-width: 768px) {
+            ul#lista-produtos li {
+                width: 100%; /* Os cards ocupam 100% da largura em dispositivos móveis */
+            }
+        }
 
     </style>
     <title>MonteiroTech</title>
