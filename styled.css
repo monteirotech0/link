@@ -109,8 +109,8 @@ ul#lista-produtos li {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     background-color: antiquewhite;
     transition: transform 0.2s;
-/*    display: flex;
-    align-items: flex-start;*/
+/*    display: flex;*/
+    align-items: flex-start;
 }
 
 ul#lista-produtos li img {
