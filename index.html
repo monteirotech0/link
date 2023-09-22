@@ -92,6 +92,42 @@
             width: 30px;
             height: 30px;
         }
+
+
+        ul#lista-produtos {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        ul#lista-produtos li {
+            width: calc(50% - 20px); /* Define a largura dos itens com margens para criar duas colunas */
+            margin: 10px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+        }
+
+        ul#lista-produtos li img {
+            max-width: 80px; /* Defina a largura máxima para a imagem */
+            margin-right: 10px; /* Crie um espaço entre a imagem e o texto */
+        }
+
+        ul#lista-produtos li h2 {
+            flex: 1; /* Faça o nome do produto ocupar o espaço restante na largura */
+            white-space: nowrap; /* Evite que o texto quebre para a próxima linha */
+            overflow: hidden; /* Oculte qualquer texto que não caiba na largura */
+            text-overflow: ellipsis; /* Adicione reticências (...) ao texto truncado */
+        }
+
+
+
     </style>
     <title>MonteiroTech</title>
 </head>
@@ -199,8 +235,8 @@
                         const listItem = document.createElement('li');
                         listItem.innerHTML = `
                             <a href="${produto.link}" target="_blank">
+                                <img src="${produto.imagem}" alt="#${produto.id} ${produto.descricao}">
                                 <h2>#${produto.id} ${produto.descricao}</h2>
-                                <img src="${produto.imagem}" />
                             </a>
                         `;
                         listaProdutos.appendChild(listItem);
