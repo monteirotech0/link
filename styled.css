@@ -119,7 +119,7 @@ ul#lista-produtos li img {
     margin-right: 10px; /* Crie um espaço entre a imagem e o texto */
 }
 
-ul#lista-produtos li h1 {
+ul#lista-produtos li p {
     overflow: hidden;
     text-overflow: ellipsis;
 }
