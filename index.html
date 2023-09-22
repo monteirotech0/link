@@ -27,7 +27,7 @@
         }       
         .logo {
             display: inline-flex;
-            vertical-align: middle;
+            align-items: center;
             margin-top: 5px;
             margin-right: 5px;
             height: 100px;
@@ -35,10 +35,15 @@
             padding-bottom: 20px;
         }
         .logo2 {
-            display: inline-flex;
+            display: flex;
+            justify-content: center; /* Centraliza horizontalmente */
+            align-items: center; /* Centraliza verticalmente */
             height: 40px;
             width: 70px;
-            align-items: center;
+        }
+
+        .logo2 img {
+            max-width: 100%; /* Garante que a imagem não ultrapasse o tamanho do div */
         }
         .logo3 {
             display: inline-flex;
@@ -158,36 +163,36 @@
     </div>
 
     <div class="logoicones">
-            <div class="logo2">
-                <a href="https://www.youtube.com/@MonteiroTech0" target="_blank">
-                    <img src="img/yt.png" alt="YouTube" style=" width: 40px">
-                </a>
-            </div>
+        <div class="logo2">
+            <a href="https://www.youtube.com/@MonteiroTech0" target="_blank">
+                <img src="img/yt.png" alt="YouTube" style=" width: 40px">
+            </a>
+        </div>
 
-            <div class="logo2">
-                <a href="https://chat.whatsapp.com/Kxra4l33KhZ0ITbLCzjiwj" target="_blank">
-                    <img src=img/zap.png alt="Whatsapp"  style=" width: 55px">
+        <div class="logo2">
+            <a href="https://chat.whatsapp.com/Kxra4l33KhZ0ITbLCzjiwj" target="_blank">
+                <img src=img/zap.png alt="Whatsapp"  style=" width: 55px">
                 </a>
                 
-            </div>
+        </div>
 
-            <div class="logo2">
-                <a href="https://www.tiktok.com/@monteirotech00" target="_blank">
-                    <img src="img/tik.png" alt="TikTok"  style=" width: 40px">
-                </a>
-            </div>
+        <div class="logo2">
+            <a href="https://www.tiktok.com/@monteirotech00" target="_blank">
+                <img src="img/tik.png" alt="TikTok"  style=" width: 40px">
+            </a>
+        </div>
 
-            <div class="logo2">
-                <a href="https://instagram.com/monteirotech0" target="_blank">
-                    <img src="img/inst.png" alt="Instagram"  style=" width: 40px">
-                </a>
-            </div>
+        <div class="logo2">
+            <a href="https://instagram.com/monteirotech0" target="_blank">
+                <img src="img/inst.png" alt="Instagram"  style=" width: 40px">
+            </a>
+        </div>
 
-            <div class="logo2">
-                <a href="https://www.facebook.com/monteirotech0" target="_blank">
-                    <img src="img/fac.png" alt="Facboock"  style=" width: 40px">
-                </a>
-            </div>            
+        <div class="logo2">
+            <a href="https://www.facebook.com/monteirotech0" target="_blank">
+                <img src="img/fac.png" alt="Facboock"  style=" width: 40px">
+            </a>
+        </div>            
     </div>  
     
     <!--
