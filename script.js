@@ -62,8 +62,8 @@ function carregarProdutos() {
                 const listItem = document.createElement('li');
                 listItem.innerHTML = `
                     <a href="${produto.link}" target="_blank">
-                        <h2>#${produto.id} ${produto.descricao}</h2>
                         <img src="${produto.imagem}" />
+                        <h2>#${produto.id} ${produto.descricao}</h2>
                     </a>
                     
                 `;
