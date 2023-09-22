@@ -101,7 +101,17 @@ ul#lista-produtos {
     justify-content: center; /* Centralize os cards horizontalmente */
 }
 
-
+ul#lista-produtos li {
+    width: calc(50% - 20px); /* Define a largura dos cards para criar duas colunas */
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: antiquewhite;
+    transition: transform 0.2s;
+    display: flex;
+    align-items: flex-start;
+}
 
 
 
