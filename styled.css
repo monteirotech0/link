@@ -110,6 +110,7 @@ ul#lista-produtos li {
     transition: transform 0.2s;
     display: flex;
     align-items: flex-start;
+    vertical-align: baseline;
 }
 
 ul#lista-produtos li img {
