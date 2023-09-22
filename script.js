@@ -46,7 +46,7 @@ function obterParametroURL(nome) {
 let destino = obterParametroURL('lk');
 
 function carregarProdutos() {
-
+    console.log('Start carregarProdutos');
     if (destinotitle) {
         document.getElementById('title_carregamento').content = 'Estamos Carregando sua OFERTA..... ! '
     }            
@@ -55,9 +55,10 @@ function carregarProdutos() {
         .then(response => response.json()) // Converte a resposta para JSON
         .then(data => {
             const listaProdutos = document.getElementById('lista-produtos');
-
+            console.log('Start listaProdutos');
             // Itera sobre os produtos e os exibe na página
             data.forEach(produto => {
+                console.log('Start produto');
                 const listItem = document.createElement('li');
                 listItem.innerHTML = `
                     <a href="${produto.link}" target="_blank">
