@@ -11,11 +11,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 const title = document.createElement("h2");
                 title.textContent = post.title;
 
-                const content = document.createElement("p");
+                const content = document.createElement("div");
                 content.textContent = post.content;
 
                 postDiv.appendChild(title);
-                postDiv.appendChild(post.content);
+                postDiv.appendChild(content);
                 blogPosts.appendChild(postDiv);
             });
         })
