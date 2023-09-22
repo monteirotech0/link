@@ -98,7 +98,7 @@ ul#lista-produtos {
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: right; /* Centralize os cards horizontalmente */
+    justify-content: center; /* Centralize os cards horizontalmente */
 }
 
 ul#lista-produtos li {
@@ -123,7 +123,6 @@ ul#lista-produtos li h2 {
     white-space: nowrap; /* Evite que o texto quebre para a próxima linha */
     overflow: hidden; /* Oculte qualquer texto que não caiba na largura */
     text-overflow: ellipsis; /* Adicione reticências (...) ao texto truncado */
-    max-width: 100%;
 }
 
 /* CSS para tornar responsivo */
