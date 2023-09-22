@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 content.textContent = post.content;
 
                 postDiv.appendChild(title);
-                postDiv.appendChild(content);
+                postDiv.appendChild(post.content);
                 blogPosts.appendChild(postDiv);
             });
         })
