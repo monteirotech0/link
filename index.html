@@ -133,25 +133,56 @@
             text-overflow: ellipsis; /* Adicione reticências (...) ao texto truncado */
         }
 
-    /* CSS para tornar responsivo */
-    @media screen and (max-width: 768px) {
-        ul#lista-produtos li {
-            width: 100%; /* Os cards ocupam 100% da largura em dispositivos móveis */
-            flex-direction: column; /* Empilhe a imagem acima do texto em dispositivos móveis */
-            align-items: flex-start; /* Alinhe a imagem e o texto à esquerda em dispositivos móveis */
+        /* CSS para tornar responsivo */
+        @media screen and (max-width: 768px) {
+            ul#lista-produtos li {
+                width: 100%; /* Os cards ocupam 100% da largura em dispositivos móveis */
+                flex-direction: column; /* Empilhe a imagem acima do texto em dispositivos móveis */
+                align-items: flex-start; /* Alinhe a imagem e o texto à esquerda em dispositivos móveis */
+            }
+
+            ul#lista-produtos li img {
+                max-width: 100%; /* A imagem ocupa 100% da largura do card em dispositivos móveis */
+                margin-right: 0; /* Remova o espaço entre a imagem e o texto em dispositivos móveis */
+            }
+
+            ul#lista-produtos li h2 {
+                flex: none; /* Defina a largura do texto para não flexível em dispositivos móveis */
+                width: 100%; /* O texto ocupa 100% da largura do card em dispositivos móveis */
+                margin-top: 10px; /* Adicione um espaço entre a imagem e o texto em dispositivos móveis */
+            }
         }
 
-        ul#lista-produtos li img {
-            max-width: 100%; /* A imagem ocupa 100% da largura do card em dispositivos móveis */
-            margin-right: 0; /* Remova o espaço entre a imagem e o texto em dispositivos móveis */
+
+        /* Estilos para o rodapé */
+        footer {
+            background-color: #222; /* Cor de fundo do rodapé */
+            color: white;
+            padding: 20px; /* Espaçamento interno do rodapé */
+            text-align: center;
         }
 
-        ul#lista-produtos li h2 {
-            flex: none; /* Defina a largura do texto para não flexível em dispositivos móveis */
-            width: 100%; /* O texto ocupa 100% da largura do card em dispositivos móveis */
-            margin-top: 10px; /* Adicione um espaço entre a imagem e o texto em dispositivos móveis */
+        /* Estilos para a lista de redes sociais */
+        ul.redes-sociais {
+            list-style: none;
+            padding: 0;
         }
-    }
+
+        ul.redes-sociais li {
+            display: inline; /* Coloca os itens da lista na mesma linha */
+            margin-right: 10px; /* Espaçamento entre os itens da lista */
+        }
+
+        ul.redes-sociais a {
+            color: white; /* Cor dos hiperlinks */
+            text-decoration: none; /* Remove sublinhado dos hiperlinks */
+            transition: color 0.2s; /* Efeito de transição de cor ao passar o mouse */
+        }
+
+        ul.redes-sociais a:hover {
+            color: #ff9900; /* Cor ao passar o mouse sobre os hiperlinks */
+        }
+
 
     </style>
     <title>MonteiroTech</title>
@@ -276,7 +307,40 @@
         // Chama a função para carregar os produtos quando a página carregar
         window.addEventListener('load', carregarProdutos);
     </script>
-  
+
+
+
+    <footer>
+        <ul class="redes-sociais">
+            <li>
+                <a href="https://facebook.com/monteirotech0" target="_blank">Facebook</a>
+            </li>
+            <li>
+                <a href="https://instagram.com/monteirotech0" target="_blank">Instagram</a>
+            </li>
+            <li>
+                <a href="mailto:contato@monteirotech.com.br">contato@monteirotech.com.br</a>
+            </li>
+            <li>
+                <a href="https://tiktok.com/@monteirotech00" target="_blank">TikTok</a>
+            </li>
+            <li>
+                <a href="https://chat.whatsapp.com/Kxra4l33KhZ0ITbLCzjiwj" target="_blank">Whatsapp</a>
+            </li>
+            <li>
+                <a href="s.click.aliexpress.com/e/_DcZb5bZ" target="_blank">Aliexpress</a>
+            </li>
+            <li>
+                <a href="https://amazon.com.br/b?_encoding=UTF8&tag=fatosdomundo-20&linkCode=ur2&linkId=5e9e1b24357f09f59e2469c648fe3d51&camp=1789&creative=9325&node=16209062011" target="_blank">Amazon</a>
+            </li>
+            <li>
+                <a href="shope.ee/5zzB4vfFBJ" target="_blank">Shopee</a>
+            </li>
+            <li>
+                <a href="https://chat.whatsapp.com/Kxra4l33KhZ0ITbLCzjiwj" target="_blank">Magalu</a>
+            </li>                        
+        </ul>
+    </footer>
 
 </body>
 </html>
