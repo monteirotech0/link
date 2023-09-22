@@ -299,12 +299,7 @@
         }
     </script>        
     
-    <!--
-    <main>
-        <div id="blog-posts"></div>
-    </main>
-    <script src="/script.js"></script>
-    -->
+
 
     <ul class="tablojas">
         <li style="border: 0px; background-color: white;">
@@ -344,9 +339,30 @@
         </li>
     </ul>
 
+    <!-- Abas -->
+    <div>
+        <button onclick="mostrarOfertas()">Ofertas</button>
+        <button onclick="mostrarPostagens()">Postagens</button>
+    </div>
 
-    <ul id="lista-produtos">
-    </ul>
+    <!-- Conteúdo das abas -->
+    <div id="ofertas" style="display: block;">
+        <ul id="lista-produtos">
+            <ul id="lista-produtos">
+            </ul>        
+        </ul>
+    </div>
+
+    <div id="postagens" style="display: none;">
+        <main>
+            <div id="blog-posts">
+                <main>
+                    <div id="blog-posts"></div>
+                </main>
+                <script src="/script.js"></script>
+            </div>
+        </main>
+    </div>
 
     <script>
         // Função para carregar e exibir a lista de produtos a partir do arquivo JSON
@@ -373,7 +389,6 @@
                 });
         }
 
-        // Chama a função para carregar os produtos quando a página carregar
         window.addEventListener('load', carregarProdutos);
     </script>
 
@@ -465,6 +480,18 @@
         }        
         // Define o atraso usando setTimeout
         setTimeout(redirecionar, atrasoEmMilissegundos);
+
+
+        function mostrarOfertas() {
+            document.getElementById('ofertas').style.display = 'block';
+            document.getElementById('postagens').style.display = 'none';
+        }
+
+        function mostrarPostagens() {
+            document.getElementById('ofertas').style.display = 'none';
+            document.getElementById('postagens').style.display = 'block';
+        }
+
 
     </script>    
 
